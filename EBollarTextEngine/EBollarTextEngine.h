@@ -4,44 +4,45 @@
 #include <thread>
 #include <Windows.h>
 
-enum direction {
-	RIGHT,
-	LEFT,
-	UP,
-	DOWN
-};
-
-enum color {
-	BLUE,
-	RED,
-	GREEN,
-	NOCOL
-};
-
-struct vec2D { // used only by Sprites
-	int x, y;
-	color c;
-};
-
-struct Sprite {
-	std::string name = "";
-	int x, y;
-	std::vector<vec2D> map;
-};
-
-struct Scene {
-	int w, h;
-
-	std::vector<color> x;
-	std::vector<std::vector<color> > arr2D;
-
-	std::vector<color> filler;
-	std::vector<std::vector<color> > prevFrame;
-
-	std::vector<Sprite> sprites;
-};
-
 namespace esb {
+
+	enum direction {
+		RIGHT,
+		LEFT,
+		UP,
+		DOWN
+	};
+
+	enum color {
+		BLUE,
+		RED,
+		GREEN,
+		NOCOL
+	};
+
+	struct vec2D { // used only by Sprites
+		int x, y;
+		color c;
+	};
+
+	struct Sprite {
+		std::string name = "";
+		int x, y;
+		std::vector<vec2D> map;
+	};
+
+	struct Scene {
+		int w, h;
+
+		std::vector<color> x;
+		std::vector<std::vector<color> > arr2D;
+
+		std::vector<color> filler;
+		std::vector<std::vector<color> > prevFrame;
+
+		std::vector<Sprite> sprites;
+	};
+
 	class EBollarTextEngine {
 	private:
 		Scene s;
@@ -58,6 +59,7 @@ namespace esb {
 		void cls();
 		void setCursorPosition(int x, int y);
 	public:
+		color getColor(char c);
 		DWORD c(color c);
 		void ShowConsoleCursor(bool ysno);
 		bool gameLoop = m_Running;
