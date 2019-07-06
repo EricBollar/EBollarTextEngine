@@ -1,40 +1,30 @@
 #include <iostream>
-#include <io.h>
-#include <fcntl.h>
+#include <windows.h>
+#include <stdio.h>
 #include "EBollarTextEngine.h"
+
+void SetConsoleColour(WORD* Attributes, DWORD Colour)
+{
+	CONSOLE_SCREEN_BUFFER_INFO Info;
+	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfo(hStdout, &Info);
+	*Attributes = Info.wAttributes;
+	SetConsoleTextAttribute(hStdout, Colour);
+}
+
+void ResetConsoleColour(WORD Attributes)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Attributes);
+}
 
 int main()
 {
-	_setmode(_fileno(stdout), _O_U16TEXT);
 	
 	esb::EBollarTextEngine eng;
 	eng.ConstructScene(50, 25);
-	eng.MakeSpriteRect(5, 5, 2, 1, eng.sR(4), "cube");
-	std::vector<vec2D> sprMap;
-
-	vec2D point1;
-	point1.x = 0;
-	point1.y = 0;
-	point1.shade = eng.sR(4);
-	sprMap.push_back(point1);
-	vec2D point2;
-	point2.x = 0;
-	point2.y = 1;
-	point2.shade = eng.sR(4);
-	sprMap.push_back(point2);
-	vec2D point3;
-	point3.x = 0;
-	point3.y = 2;
-	point3.shade = eng.sR(4);
-	sprMap.push_back(point3);
-	vec2D point4;
-	point4.x = 1;
-	point4.y = 2;
-	point4.shade = eng.sR(4);
-	sprMap.push_back(point4);
-
-	eng.MakeSprite(20, 20, sprMap, "wall");
 	eng.ShowConsoleCursor(false);
+	eng.MakeSpriteRect(5, 5, 2, 2, GREEN, "cube");
+	eng.MakeSpriteRect(20, 20, 4, 1, RED, "wall");
 
 	while (eng.gameLoop) {
 

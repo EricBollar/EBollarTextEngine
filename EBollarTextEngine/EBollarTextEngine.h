@@ -1,11 +1,10 @@
 #include <string>
 #include <vector>
 #include <array>
-#include <io.h>
-#include <fcntl.h>
 #include <thread>
+#include <Windows.h>
 
-enum keyCode {
+enum direction {
 	RIGHT,
 	LEFT,
 	UP,
@@ -15,29 +14,29 @@ enum keyCode {
 enum color {
 	BLUE,
 	RED,
-	GREEN
+	GREEN,
+	NOCOL
 };
 
 struct vec2D { // used only by Sprites
 	int x, y;
-	wchar_t shade;
+	color c;
 };
 
 struct Sprite {
 	std::string name = "";
 	int x, y;
 	std::vector<vec2D> map;
-	color c;
 };
 
 struct Scene {
 	int w, h;
 
-	std::vector<wchar_t> x;
-	std::vector<std::vector<wchar_t> > arr2D;
+	std::vector<color> x;
+	std::vector<std::vector<color> > arr2D;
 
-	std::vector<wchar_t> filler;
-	std::vector<std::vector<wchar_t> > prevFrame;
+	std::vector<color> filler;
+	std::vector<std::vector<color> > prevFrame;
 
 	std::vector<Sprite> sprites;
 };
@@ -46,32 +45,34 @@ namespace esb {
 	class EBollarTextEngine {
 	private:
 		Scene s;
-		std::vector<vec2D> CompareFrames(std::vector<std::vector<wchar_t> >& frame1, std::vector<std::vector<wchar_t> >& frame2);
+		std::vector<vec2D> CompareFrames(std::vector<std::vector<color> >& frame1, std::vector<std::vector<color> >& frame2);
 		int rRate = 100;
-		wchar_t baseFill = L' ';
+		WORD Attributes = 0;
+		color baseColor = BLUE;
 		bool m_Running = false;
 		bool canMove = true;
 		void SpriteCollate();
 		int FindSpriteWithName(std::string name);
-		void setConsoleColour(unsigned short colour);
+		void setConsoleColour(WORD* Attributes, DWORD Colour);
+		void ResetConsoleColour(WORD Attributes);
 		void cls();
 		void setCursorPosition(int x, int y);
 	public:
+		DWORD c(color c);
 		void ShowConsoleCursor(bool ysno);
 		bool gameLoop = m_Running;
 		void GameLoop();
 		void Stop();
 		void ConstructScene(int width, int height);
-		void FillScene(wchar_t shade);
+		void FillScene(color c);
 		void PrintScene();
-		wchar_t sR(int i);
-		void PaintPix(int x, int y, wchar_t shade);
+		void PaintPix(int x, int y, color c);
 		void MakeSprite(int x, int y, std::vector<vec2D> m, std::string name);
-		void MakeSpriteRect(int x, int y, int w, int h, wchar_t shade, std::string name);
+		void MakeSpriteRect(int x, int y, int w, int h, color c, std::string name);
 		void DelSprite(std::string name);
 		void ClearSprites();
 		void MoveSprite(int xC, int yC, std::string name);
-		bool OnKey(keyCode key);
+		bool OnKey(direction key);
 		void RefreshRate(int milliseconds);
 		std::string CheckCollide(std::string name);
 	};

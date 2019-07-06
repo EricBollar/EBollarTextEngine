@@ -1,2 +1,3 @@
 ﻿  main.cpp
-  EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\Documents\Visual Studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\main.cpp(12): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
+  EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe
