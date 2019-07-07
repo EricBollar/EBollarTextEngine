@@ -24,12 +24,18 @@
     <ClCompile Include="Snake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PongPVP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EBollarTextEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PongPVP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,2 @@
-﻿  EBollarTextEngine.cpp
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(60): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(78): warning C4715: 'esb::EBollarTextEngine::FindSpriteWithName': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(180): warning C4715: 'esb::EBollarTextEngine::c': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(131): warning C4715: 'esb::EBollarTextEngine::OnKey': not all control paths return a value
+﻿  PongPVP.cpp
   EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe

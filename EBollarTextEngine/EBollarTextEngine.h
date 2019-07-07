@@ -10,14 +10,20 @@ namespace esb {
 		RIGHT,
 		LEFT,
 		UP,
-		DOWN
+		DOWN,
+		W,
+		S
 	};
 
 	enum color {
 		BLUE,
 		RED,
 		GREEN,
-		NOCOL
+		YELLOW,
+		PINK,
+		LIGHTBLUE,
+		BLACK,
+		WHITE
 	};
 
 	struct vec2D { // used only by Sprites
@@ -81,6 +87,7 @@ namespace esb {
 		void RefreshRate(int milliseconds);
 		void setX(int x, std::string a);
 		void setY(int y, std::string a);
+		void SetBackground(esb::color c);
 		std::string CheckCollide(std::string name);
 	};
 }

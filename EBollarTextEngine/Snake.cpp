@@ -4,6 +4,8 @@
 Snake::Snake() {
 	eng.ConstructScene(w, h);
 	eng.MakeSpriteRect(5, 5, 1, 1, esb::GREEN, "head");
+	eng.SetBackground(esb::BLACK);
+	eng.RefreshRate(30);
 	point head;
 	head.x = 5; head.y = 5;
 	body.push_back(head);

@@ -1,12 +1,12 @@
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
-#include "Snake.h"
+#include "PongPVP.h"
 
 int main()
 {
-	Snake s;
-	s.GameLoop();
+	PongPVP p;
+	p.GameLoop();
 
 	system("PAUSE");
 	return 0;
