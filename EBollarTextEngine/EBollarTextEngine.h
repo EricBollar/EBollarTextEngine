@@ -47,7 +47,7 @@ namespace esb {
 	private:
 		Scene s;
 		std::vector<vec2D> CompareFrames(std::vector<std::vector<color> >& frame1, std::vector<std::vector<color> >& frame2);
-		int rRate = 100;
+		int rRate = 150;
 		WORD Attributes = 0;
 		color baseColor = BLUE;
 		bool m_Running = false;
@@ -58,12 +58,15 @@ namespace esb {
 		void ResetConsoleColour(WORD Attributes);
 		void cls();
 		void setCursorPosition(int x, int y);
+		void CheckSpriteCOO();
 	public:
-		color getColor(char c);
+		int getPosX(std::string name);
+		int getPosY(std::string name);
+		void PushSprite(Sprite a);
 		DWORD c(color c);
 		void ShowConsoleCursor(bool ysno);
 		bool gameLoop = m_Running;
-		void GameLoop();
+		void Render();
 		void Stop();
 		void ConstructScene(int width, int height);
 		void FillScene(color c);
@@ -76,6 +79,8 @@ namespace esb {
 		void MoveSprite(int xC, int yC, std::string name);
 		bool OnKey(direction key);
 		void RefreshRate(int milliseconds);
+		void setX(int x, std::string a);
+		void setY(int y, std::string a);
 		std::string CheckCollide(std::string name);
 	};
 }
