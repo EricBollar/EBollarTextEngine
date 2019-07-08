@@ -3,15 +3,18 @@
 
 PongPVP::PongPVP() {
 	eng.ConstructScene(w, h);
-	eng.MakeText(8, 15, esb::GREEN, std::to_string(leftScore), "lScore");
-	eng.MakeText(14, 4, esb::GREEN, "hello world!", "rScore");
+	eng.MakeText(w - 4, h/2 - 5, esb::BLACK, std::to_string(leftScore), "lScore");
+	eng.MakeText(w + 4, h/2 - 5, esb::BLACK, "hello world!", "rScore");
+	eng.MakeText(w - 2, h / 2 - 6, esb::BLACK, "Score", "scoreboardText");
+	eng.MakeText(w - 7, h/2 - 4, esb::BLACK, "First to 5 wins!", "encouragemetText");
+	eng.MakeText(w, h / 2 - 5, esb::BLACK, "-", "scoreboardHash");
 	eng.MakeSpriteRect(7, 1, 1, w - 6, esb::BLACK, "top");
 	eng.MakeSpriteRect(7, h, 1, w - 6, esb::BLACK, "bot");
 	eng.MakeSpriteRect(5, h/2, h/4, 1, esb::RED, "lPaddle");
 	eng.MakeSpriteRect(w*2 - 5, h/2, h/4, 1, esb::RED, "rPaddle");
-	eng.MakeSpriteRect(8, h/2, 1, 1, esb::BLUE, "ball");
+	eng.MakeSpriteRect(18, h/2, 1, 1, esb::BLUE, "ball");
 	eng.SetBackground(esb::BLACK);
-	eng.RefreshRate(15);
+	eng.RefreshRate(refreshRate);
 	
 	eng.ShowConsoleCursor(false);
 	GameLoop();
@@ -20,12 +23,45 @@ PongPVP::PongPVP() {
 void PongPVP::GameLoop() {
 	while (eng.gameLoop) {
 		ballgo = true;
-		eng.setText(std::to_string(leftScore), "lScore");
-		leftScore++;
 		movePaddles();
 		moveBall();
+		checkPoints();
 		eng.Render();
 	}
+}
+
+void PongPVP::checkPoints() {
+	bool reset = false;
+	if (eng.getPosX("ball") <= 0) {
+		rightScore++;
+		reset = true;
+		ballVel = RIGHT;
+	}
+	else if (eng.getPosX("ball") >= w * 2 - 2) {
+		leftScore++;
+		reset = true;
+		ballVel = LEFT;
+	}
+
+	if (leftScore >= 5) {
+		eng.DelSprite("encouragemetText");
+		eng.MakeText(w - 7, h / 2 - 4, esb::BLACK, "Left Player Wins!", "winner");
+		eng.Stop();
+	}
+	else if (rightScore >= 5) {
+		eng.DelSprite("encouragemetText");
+		eng.MakeText(w - 7, h / 2 - 4, esb::BLACK, "Right Player Wins!", "winner");
+		eng.Stop();
+	}else if (reset) {
+		rPaddleDir = NONE;
+		lPaddleDir = NONE;
+		eng.setX(w / 2, "ball");
+		eng.setY(h / 2, "ball");
+		hits = 0;
+		ballSpeed = 10;
+	}
+	eng.setText(std::to_string(rightScore), "rScore");
+	eng.setText(std::to_string(leftScore), "lScore");
 }
 
 void PongPVP::movePaddles() {
@@ -50,43 +86,79 @@ void PongPVP::movePaddles() {
 void PongPVP::moveBall() {
 
 	if (ballVel == UPRIGHT) {
-		eng.MoveSprite(ballSpeed, -ballSpeed, "ball");
-	}
-	if (ballVel == UPLEFT) {
-		eng.MoveSprite(-ballSpeed, -ballSpeed, "ball");
-	}
-	if (ballVel == DOWNRIGHT) {
-		eng.MoveSprite(ballSpeed, ballSpeed, "ball");
-	}
-	if (ballVel == DOWNLEFT) {
-		eng.MoveSprite(-ballSpeed, ballSpeed, "ball");
+		eng.MoveSprite(1, -1, "ball");
+		if (ballBoost == 0) {
+			eng.MoveSprite(1, -1, "ball");
+			ballBoost = ballSpeed;
+		}
+	}else if (ballVel == UPLEFT) {
+		eng.MoveSprite(-1, -1, "ball");
+		if (ballBoost == 0) {
+			eng.MoveSprite(-1, -1, "ball");
+			ballBoost = ballSpeed;
+		}
+	}else if (ballVel == DOWNRIGHT) {
+		eng.MoveSprite(1, 1, "ball");
+		if (ballBoost == 0) {
+			eng.MoveSprite(1, 1, "ball");
+			ballBoost = ballSpeed;
+		}
+	}else if (ballVel == DOWNLEFT) {
+		eng.MoveSprite(-1, 1, "ball");
+		if (ballBoost == 0) {
+			eng.MoveSprite(-1, 1, "ball");
+			ballBoost = ballSpeed;
+		}
+	}else if (ballVel == LEFT) {
+		eng.MoveSprite(-1, 0, "ball");
+		if (ballBoost == 0) {
+			eng.MoveSprite(-1, 0, "ball");
+			ballBoost = ballSpeed;
+		}
+	}else if (ballVel == RIGHT) {
+		eng.MoveSprite(1, 0, "ball");
+		if (ballBoost == 0) {
+			eng.MoveSprite(1, 0, "ball");
+			ballBoost = ballSpeed;
+		}
 	}
 
 	if (eng.CheckCollide("ball") == "top" && ballVel == UPRIGHT) {
 		ballVel = DOWNRIGHT;
 	} else if (eng.CheckCollide("ball") == "top" && ballVel == UPLEFT) {
 		ballVel = DOWNLEFT;
-	}
-	if (eng.CheckCollide("ball") == "bot" && ballVel == DOWNRIGHT) {
+	}else if (eng.CheckCollide("ball") == "bot" && ballVel == DOWNRIGHT) {
 		ballVel = UPRIGHT;
 	}
 	else if (eng.CheckCollide("ball") == "bot" && ballVel == DOWNLEFT) {
 		ballVel = UPLEFT;
-	}
-	if (eng.CheckCollide("ball") == "rPaddle" && rPaddleDir == UP) {
+	}else if (eng.CheckCollide("ball") == "rPaddle" && rPaddleDir == UP) {
 		ballVel = UPLEFT;
+		hits++;
 	}
 	else if (eng.CheckCollide("ball") == "rPaddle" && rPaddleDir == DOWN) {
 		ballVel = DOWNLEFT;
-	}
-	if (eng.CheckCollide("ball") == "lPaddle" && lPaddleDir == UP) {
+		hits++;
+	}else if (eng.CheckCollide("ball") == "lPaddle" && lPaddleDir == UP) {
 		ballVel = UPRIGHT;
+		hits++;
 	}
 	else if (eng.CheckCollide("ball") == "lPaddle" && lPaddleDir == DOWN) {
 		ballVel = DOWNRIGHT;
+		hits++;
+	}
+	else if (eng.CheckCollide("ball") == "lPaddle" && lPaddleDir == NONE) {
+		ballVel = RIGHT;
+		hits++;
+	}
+	else if (eng.CheckCollide("ball") == "rPaddle" && lPaddleDir == NONE) {
+		ballVel = LEFT;
+		hits++;
 	}
 
-	if (hits % 8 == 0) {
-		ballSpeed++;
+	if (hits % 5 == 0 && ballSpeed > 1) {
+		ballSpeed--;
+		hits = 5;
 	}
+	ballBoost--;
 }
