@@ -26,9 +26,17 @@ namespace esb {
 		WHITE
 	};
 
-	struct vec2D { // used only by Sprites
+	struct Pixel {
+		color c;
+		color textC;
+		char t = ' ';
+	};
+
+	struct vec2D { // used by Sprites
 		int x, y;
 		color c;
+		color textC;
+		char t = ' '; // if i want to print text i can override the default "space" char but otherwise i dont wanna deal with it in my non-text sprites
 	};
 
 	struct Sprite {
@@ -40,11 +48,11 @@ namespace esb {
 	struct Scene {
 		int w, h;
 
-		std::vector<color> x;
-		std::vector<std::vector<color> > arr2D;
+		std::vector<Pixel> x;
+		std::vector<std::vector<Pixel> > arr2D;
 
-		std::vector<color> filler;
-		std::vector<std::vector<color> > prevFrame;
+		std::vector<Pixel> filler;
+		std::vector<std::vector<Pixel> > prevFrame;
 
 		std::vector<Sprite> sprites;
 	};
@@ -52,7 +60,7 @@ namespace esb {
 	class EBollarTextEngine {
 	private:
 		Scene s;
-		std::vector<vec2D> CompareFrames(std::vector<std::vector<color> >& frame1, std::vector<std::vector<color> >& frame2);
+		std::vector<vec2D> CompareFrames(std::vector<std::vector<Pixel> >& frame1, std::vector<std::vector<Pixel> >& frame2);
 		int rRate = 150;
 		WORD Attributes = 0;
 		color baseColor = BLUE;
@@ -88,6 +96,8 @@ namespace esb {
 		void setX(int x, std::string a);
 		void setY(int y, std::string a);
 		void SetBackground(esb::color c);
+		void MakeText(int x, int y, color c, std::string string, std::string name);
+		void setText(std::string string, std::string name);
 		std::string CheckCollide(std::string name);
 	};
 }

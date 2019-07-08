@@ -16,6 +16,8 @@ private:
 	int ballSpeed = 1;
 	int hits = 1;
 	bool ballgo = false;
+	int leftScore = 0;
+	int rightScore = 0;
 	ballDir ballVel = UPRIGHT;
 	paddleDir rPaddleDir = UP;
 	paddleDir lPaddleDir = UP;

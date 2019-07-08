@@ -3,11 +3,13 @@
 
 PongPVP::PongPVP() {
 	eng.ConstructScene(w, h);
+	eng.MakeText(8, 15, esb::GREEN, std::to_string(leftScore), "lScore");
+	eng.MakeText(14, 4, esb::GREEN, "hello world!", "rScore");
+	eng.MakeSpriteRect(7, 1, 1, w - 6, esb::BLACK, "top");
+	eng.MakeSpriteRect(7, h, 1, w - 6, esb::BLACK, "bot");
 	eng.MakeSpriteRect(5, h/2, h/4, 1, esb::RED, "lPaddle");
 	eng.MakeSpriteRect(w*2 - 5, h/2, h/4, 1, esb::RED, "rPaddle");
 	eng.MakeSpriteRect(8, h/2, 1, 1, esb::BLUE, "ball");
-	eng.MakeSpriteRect(7, 1, 1, w - 6, esb::BLACK, "top");
-	eng.MakeSpriteRect(7, h, 1, w - 6, esb::BLACK, "bot");
 	eng.SetBackground(esb::BLACK);
 	eng.RefreshRate(15);
 	
@@ -18,6 +20,8 @@ PongPVP::PongPVP() {
 void PongPVP::GameLoop() {
 	while (eng.gameLoop) {
 		ballgo = true;
+		eng.setText(std::to_string(leftScore), "lScore");
+		leftScore++;
 		movePaddles();
 		moveBall();
 		eng.Render();
