@@ -1,12 +1,12 @@
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
-#include "PongPVP.h"
+#include "Menu.h"
 
 int main()
 {
-	PongPVP p;
-	p.GameLoop();
+	Menu p;
+	p.LoadStart();
 
 	system("PAUSE");
 	return 0;

@@ -16,13 +16,13 @@ class PongPVP {
 		NONE
 	};
 private:
-	int ballSpeed = 10;
+	int ballSpeed = 1;
 	int hits = 0;
 	bool ballgo = false;
 	int ballBoost = ballSpeed;
 	int leftScore = 0;
 	int rightScore = 0;
-	int refreshRate = 15;
+	int refreshRate = 1;
 	ballDir ballVel = RIGHT;
 	paddleDir rPaddleDir = NONE;
 	paddleDir lPaddleDir = NONE;

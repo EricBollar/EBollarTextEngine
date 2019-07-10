@@ -3,7 +3,7 @@
 
 PongPVP::PongPVP() {
 	eng.ConstructScene(w, h);
-	eng.MakeText(w - 4, h/2 - 5, esb::BLACK, std::to_string(leftScore), "lScore");
+	eng.MakeText(w - 4, h/2 - 5, esb::BLACK, std::to_string(leftScore), "lScore"); 
 	eng.MakeText(w + 4, h/2 - 5, esb::BLACK, "hello world!", "rScore");
 	eng.MakeText(w - 2, h / 2 - 6, esb::BLACK, "Score", "scoreboardText");
 	eng.MakeText(w - 7, h/2 - 4, esb::BLACK, "First to 5 wins!", "encouragemetText");
@@ -35,12 +35,12 @@ void PongPVP::checkPoints() {
 	if (eng.getPosX("ball") <= 0) {
 		rightScore++;
 		reset = true;
-		ballVel = RIGHT;
+		ballVel = LEFT;
 	}
 	else if (eng.getPosX("ball") >= w * 2 - 2) {
 		leftScore++;
 		reset = true;
-		ballVel = LEFT;
+		ballVel = RIGHT;
 	}
 
 	if (leftScore >= 5) {
@@ -156,9 +156,9 @@ void PongPVP::moveBall() {
 		hits++;
 	}
 
-	if (hits % 5 == 0 && ballSpeed > 1) {
+	if (hits % 3 == 0 && ballSpeed > 1) {
 		ballSpeed--;
-		hits = 5;
+		hits = 3;
 	}
 	ballBoost--;
 }
