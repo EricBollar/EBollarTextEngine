@@ -11,8 +11,6 @@ namespace esb {
 		LEFT,
 		UP,
 		DOWN,
-		W,
-		S
 	};
 
 	enum color {
@@ -27,77 +25,70 @@ namespace esb {
 	};
 
 	struct Pixel {
-		color c;
-		color textC;
-		char t = ' ';
-	};
-
-	struct vec2D { // used by Sprites
-		int x, y;
-		color c;
-		color textC;
-		char t = ' '; // if i want to print text i can override the default "space" char but otherwise i dont wanna deal with it in my non-text sprites
+		int x, y; // mainly just used for spritemaps, when added to frame this is left blank
+		color c; // color
+		color textColor; // color of text
+		char t = ' '; // text displayed (automatically a space because it cannot be blank to print an empty pix)
 	};
 
 	struct Sprite {
-		std::string name = "";
-		int x, y;
-		std::vector<vec2D> map;
+		std::string name = ""; // name of instance
+		int x, y; // pos
+		std::vector<Pixel> map; // visual
+		int id; // internal random value or can be manually set by user if more than one of certain name
 	};
 
 	struct Scene {
-		int w, h;
+		int w, h; // dimensions
 
-		std::vector<Pixel> x;
-		std::vector<std::vector<Pixel> > arr2D;
+		std::vector<Pixel> row; // the row arr2D uses to iterate through frame
+		std::vector<std::vector<Pixel> > arr2D; // array of pixels for next frame
 
-		std::vector<Pixel> filler;
-		std::vector<std::vector<Pixel> > prevFrame;
+		std::vector<Pixel> filler; // the row that prevFrame uses to iterate through frame
+		std::vector<std::vector<Pixel> > prevFrame; // array of pixels for prev frame
 
-		std::vector<Sprite> sprites;
+		std::vector<Sprite> sprites; // the sprites
 	};
 
 	class EBollarTextEngine {
 	private:
 		Scene s;
-		std::vector<vec2D> CompareFrames(std::vector<std::vector<Pixel> >& frame1, std::vector<std::vector<Pixel> >& frame2);
+		std::vector<esb::Pixel> CompareFrames(std::vector<std::vector<esb::Pixel> >& frame1, std::vector<std::vector<esb::Pixel> >& frame2);
 		int rRate = 150;
 		WORD Attributes = 0;
 		color baseColor = BLUE;
-		bool m_Running = false;
-		bool canMove = true;
+		bool canPress = true;
 		void SpriteCollate();
-		int FindSpriteWithName(std::string name);
+		int FindSpriteIndex(std::string name, int id = -1);
 		void setConsoleColour(WORD* Attributes, DWORD Colour);
 		void ResetConsoleColour(WORD Attributes);
 		void cls();
 		void setCursorPosition(int x, int y);
-		void CheckSpriteCOO();
+		//void CheckSpriteCOO();
 	public:
-		int getPosX(std::string name);
-		int getPosY(std::string name);
-		void PushSprite(Sprite a);
+		bool RUNNING = false;
+		int getPosX(std::string name, int id = -1);
+		int getPosY(std::string name, int id = -1);
+		void AddSprite(Sprite a);
 		DWORD c(color c);
 		void ShowConsoleCursor(bool ysno);
-		bool gameLoop = m_Running;
 		void Render();
 		void Stop();
 		void ConstructScene(int width, int height);
 		void FillScene(color c);
 		void PrintScene();
-		void PaintPix(int x, int y, color c);
-		void MakeSprite(int x, int y, std::vector<vec2D> m, std::string name);
-		void MakeSpriteRect(int x, int y, int w, int h, color c, std::string name);
-		void DelSprite(std::string name);
+		void MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, int id = -1);
+		void MakeSpriteRect(int x, int y, int w, int h, color c, std::string name, int id = -1);
+		void DelSprite(std::string name, int id = -1);
 		void ClearSprites();
-		void MoveSprite(int xC, int yC, std::string name);
+		void MoveSprite(int xC, int yC, std::string name, int id = -1);
 		bool OnKey(direction key);
-		void RefreshRate(int milliseconds);
-		void setX(int x, std::string a);
-		void setY(int y, std::string a);
+		void setRefreshRate(int milliseconds);
+		void setX(int x, std::string name, int id = -1);
+		void setY(int x, std::string name, int id = -1);
 		void SetBackground(esb::color c);
-		void MakeText(int x, int y, color c, std::string string, std::string name);
-		void setText(std::string string, std::string name);
-		std::string CheckCollide(std::string name);
+		void MakeText(int x, int y, color c, std::string string, std::string name, int id = -1);
+		void setText(std::string string, std::string name, int id = -1);
+		std::string CheckSpriteCollide(std::string name, int id = -1);
 	};
 }

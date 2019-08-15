@@ -1,12 +1,12 @@
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
-#include "Menu.h"
+#include "Snake.h"
 
 int main()
 {
-	Menu p;
-	p.LoadStart();
+	Snake s;
+	s.GameLoop();
 
 	system("PAUSE");
 	return 0;

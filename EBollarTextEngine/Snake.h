@@ -1,7 +1,7 @@
 #include "EBollarTextEngine.h"
 #include <vector>
 
-class Snake {
+class Snake : public esb::EBollarTextEngine{
 	struct point {
 		int x, y;
 	};

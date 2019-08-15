@@ -1,2 +1,8 @@
-﻿  Menu.cpp
+﻿  EBollarTextEngine.cpp
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(60): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(437): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(440): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(443): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(144): warning C4715: 'esb::EBollarTextEngine::OnKey': not all control paths return a value
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(209): warning C4715: 'esb::EBollarTextEngine::c': not all control paths return a value
   EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe

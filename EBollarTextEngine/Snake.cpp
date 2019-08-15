@@ -3,9 +3,9 @@
 
 Snake::Snake() {
 	eng.ConstructScene(w, h);
-	eng.MakeSpriteRect(5, 5, 1, 1, esb::GREEN, "head");
+	eng.MakeSpriteRect(5, 5, 1, 1, esb::GREEN, "head", 1);
 	eng.SetBackground(esb::BLACK);
-	eng.RefreshRate(30);
+	eng.setRefreshRate(40);
 	point head;
 	head.x = 5; head.y = 5;
 	body.push_back(head);
@@ -15,15 +15,15 @@ Snake::Snake() {
 }
 
 void Snake::GameLoop() {
-	while (eng.gameLoop) {
+	while (eng.RUNNING) {
 		Movement();
 
-		if (eng.CheckCollide("head") == "apple") {
+		if (eng.CheckSpriteCollide("head") == "apple") {
 			eng.DelSprite("apple");
 			GrowBody();
 			SpawnApple();
 		}
-		else if (eng.CheckCollide("head").substr(0, 4) == "body") {
+		else if (eng.CheckSpriteCollide("head").substr(0, 4) == "body") {
 			eng.Stop();
 		}
 		
@@ -51,10 +51,10 @@ void Snake::Movement() {
 	}
 
 	if (movingDir == esb::DOWN) {
-		eng.MoveSprite(0, 1, "head");
+		eng.MoveSprite(0, 2, "head");
 	}
 	if (movingDir == esb::UP) {
-		eng.MoveSprite(0, -1, "head");
+		eng.MoveSprite(0, -2, "head");
 	}
 	if (movingDir == esb::RIGHT) {
 		eng.MoveSprite(2, 0, "head");
@@ -83,7 +83,7 @@ void Snake::GrowBody() {
 	newBody.y = body.at(body.size() - 1).y;
 
 	eng.MakeSpriteRect(newBody.x, newBody.y, 1, 1, esb::GREEN, "body" + std::to_string(body.size()));
-	wait = 1; // gotta wait for the other squares to move out the way
+	wait = 2; // gotta wait for the other squares to move out the way
 
 	body.push_back(newBody);
 }

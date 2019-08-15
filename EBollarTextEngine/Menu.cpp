@@ -1,3 +1,4 @@
+/*
 #include "Menu.h"
 
 void Menu::LoadStart(){
@@ -58,3 +59,4 @@ void Menu::MoveCursor() {
 void Menu::MakeTitle() {
 	// make some pretty tittle here eventually
 }
+*/
