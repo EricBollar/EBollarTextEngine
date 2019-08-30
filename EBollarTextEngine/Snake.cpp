@@ -2,38 +2,38 @@
 #include <iostream>
 
 Snake::Snake() {
-	eng.ConstructScene(w, h);
-	eng.MakeSpriteRect(5, 5, 1, 1, esb::GREEN, "head", 1);
-	eng.SetBackground(esb::BLACK);
-	eng.setRefreshRate(40);
+	s.ConstructScene(w, h);
+	s.MakeSpriteRect(5, 5, 1, 1, esb::GREEN, "head", 1);
+	s.SetBackground(esb::BLACK);
+	e->SETREFRESHRATE(40);
 	point head;
 	head.x = 5; head.y = 5;
 	body.push_back(head);
 	SpawnApple();
-	eng.ShowConsoleCursor(false);
-	GameLoop();
+	e->LOADSCENE(s);
+	Run();
 }
 
-void Snake::GameLoop() {
-	while (eng.RUNNING) {
+void Snake::Run() {
+	while (s.RUNNING) {
 		Movement();
 
-		if (eng.CheckSpriteCollide("head") == "apple") {
-			eng.DelSprite("apple");
+		if (s.CheckSpriteCollide(s.FindSprite("head")).getName() == "apple") {
+			s.DelSprite(s.FindSprite("apple"));
 			GrowBody();
 			SpawnApple();
 		}
-		else if (eng.CheckSpriteCollide("head").substr(0, 4) == "body") {
-			eng.Stop();
+		else if (s.CheckSpriteCollide(s.FindSprite("head")).getName().substr(0, 4) == "body") {
+			s.Stop();
 		}
-		
-		eng.Render();
+
+		e->RENDER();
 	}
 }
 
 void Snake::Movement() {
-	body.at(0).x = eng.getPosX("head") + 1; // update head pos in body vec
-	body.at(0).y = eng.getPosY("head") + 1;
+	body.at(0).x = s.FindSprite("head").getX() + 1; // update head pos in body vec
+	body.at(0).y = s.FindSprite("head").getY() + 1;
 
 	if (body.size() > 1) {
 		// update body points
@@ -43,7 +43,7 @@ void Snake::Movement() {
 			}
 			else {
 				// draw each point
-				eng.MoveSprite(body.at(i - 1).x - body.at(i).x, body.at(i - 1).y - body.at(i).y, "body" + std::to_string(i));
+				s.FindSprite("body" + std::to_string(i)).Translate(body.at(i - 1).x - body.at(i).x, body.at(i - 1).y - body.at(i).y);
 				body.at(i).x = body.at(i - 1).x;
 				body.at(i).y = body.at(i - 1).y;
 			}
@@ -51,28 +51,28 @@ void Snake::Movement() {
 	}
 
 	if (movingDir == esb::DOWN) {
-		eng.MoveSprite(0, 2, "head");
+		s.FindSprite("head").Translate(0, 2);
 	}
 	if (movingDir == esb::UP) {
-		eng.MoveSprite(0, -2, "head");
+		s.FindSprite("head").Translate(0, -2);
 	}
 	if (movingDir == esb::RIGHT) {
-		eng.MoveSprite(2, 0, "head");
+		s.FindSprite("head").Translate(2, 0);
 	}
 	if (movingDir == esb::LEFT) {
-		eng.MoveSprite(-2, 0, "head");
+		s.FindSprite("head").Translate(-2, 0);
 	}
 	
-	if (eng.OnKey(esb::UP) && movingDir != esb::DOWN) {
+	if (e->ONKEY(esb::UP) && movingDir != esb::DOWN) {
 		movingDir = esb::UP;
 	}
-	if (eng.OnKey(esb::DOWN) && movingDir != esb::UP) {
+	if (e->ONKEY(esb::DOWN) && movingDir != esb::UP) {
 		movingDir = esb::DOWN;
 	}
-	if (eng.OnKey(esb::RIGHT) && movingDir != esb::LEFT) {
+	if (e->ONKEY(esb::RIGHT) && movingDir != esb::LEFT) {
 		movingDir = esb::RIGHT;
 	}
-	if (eng.OnKey(esb::LEFT) && movingDir != esb::RIGHT) {
+	if (e->ONKEY(esb::LEFT) && movingDir != esb::RIGHT) {
 		movingDir = esb::LEFT;
 	}
 }
@@ -82,12 +82,12 @@ void Snake::GrowBody() {
 	newBody.x = body.at(body.size() - 1).x;
 	newBody.y = body.at(body.size() - 1).y;
 
-	eng.MakeSpriteRect(newBody.x, newBody.y, 1, 1, esb::GREEN, "body" + std::to_string(body.size()));
+	s.MakeSpriteRect(newBody.x, newBody.y, 1, 1, esb::GREEN, "body" + std::to_string(body.size()));
 	wait = 2; // gotta wait for the other squares to move out the way
 
 	body.push_back(newBody);
 }
 
 void Snake::SpawnApple() {
-	eng.MakeSpriteRect(rand() % w + 1, rand() % h + 1, 1, 1, esb::RED, "apple");
+	s.MakeSpriteRect(rand() % w + 1, rand() % h + 1, 1, 1, esb::RED, "apple");
 }

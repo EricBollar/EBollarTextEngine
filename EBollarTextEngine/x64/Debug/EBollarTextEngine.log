@@ -1,8 +1,131 @@
-﻿  EBollarTextEngine.cpp
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(60): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(437): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(440): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(443): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(144): warning C4715: 'esb::EBollarTextEngine::OnKey': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.cpp(209): warning C4715: 'esb::EBollarTextEngine::c': not all control paths return a value
-  EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe
+﻿  Engine.cpp
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(105): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\xutility(2443): error C2280: 'esb::Sprite &esb::Sprite::operator =(const esb::Sprite &)': attempting to reference a deleted function
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(63): note: compiler has generated 'esb::Sprite::operator =' here
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\xutility(2462): note: see reference to function template instantiation '_OutIt std::_Copy_unchecked1<_InIt,_OutIt>(_InIt,_InIt,_OutIt,std::_General_ptr_iterator_tag)' being compiled
+          with
+          [
+              _OutIt=esb::Sprite *,
+              _InIt=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1430): note: see reference to function template instantiation '_OutIt *std::_Copy_unchecked<_Iter,esb::Sprite*>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=esb::Sprite *,
+              _Iter=esb::Sprite *,
+              _InIt=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1448): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::_Assign_range<_Iter>(_Iter,_Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1448): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::_Assign_range<_Iter>(_Iter,_Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1471): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::assign<esb::Sprite*,void>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1471): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::assign<esb::Sprite*,void>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1457): note: while compiling class template member function 'std::vector<esb::Sprite,std::allocator<_Ty>> &std::vector<_Ty,std::allocator<_Ty>>::operator =(const std::vector<_Ty,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=esb::Sprite
+          ]
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(17): note: see reference to function template instantiation 'std::vector<esb::Sprite,std::allocator<_Ty>> &std::vector<_Ty,std::allocator<_Ty>>::operator =(const std::vector<_Ty,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=esb::Sprite
+          ]
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(76): note: see reference to class template instantiation 'std::vector<esb::Sprite,std::allocator<_Ty>>' being compiled
+          with
+          [
+              _Ty=esb::Sprite
+          ]
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(63): note: 'esb::Sprite &esb::Sprite::operator =(const esb::Sprite &)': function was implicitly deleted because 'esb::Sprite' has a data member 'esb::Sprite::s' of reference type
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(37): note: see declaration of 'esb::Sprite::s'
+  Scene.cpp
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(99): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(106): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(113): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(72): error C2280: 'esb::Sprite::Sprite(void)': attempting to reference a deleted function
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(63): note: compiler has generated 'esb::Sprite::Sprite' here
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(63): note: 'esb::Sprite::Sprite(void)': function was implicitly deleted because 'esb::Sprite' has an uninitialized data member 'esb::Sprite::s' of reference type
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(37): note: see declaration of 'esb::Sprite::s'
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(127): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(228): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(231): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(234): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Snake.cpp
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\snake.cpp(40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Sprite.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\xutility(2443): error C2280: 'esb::Sprite &esb::Sprite::operator =(const esb::Sprite &)': attempting to reference a deleted function
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(63): note: compiler has generated 'esb::Sprite::operator =' here
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\xutility(2462): note: see reference to function template instantiation '_OutIt std::_Copy_unchecked1<_InIt,_OutIt>(_InIt,_InIt,_OutIt,std::_General_ptr_iterator_tag)' being compiled
+          with
+          [
+              _OutIt=esb::Sprite *,
+              _InIt=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1430): note: see reference to function template instantiation '_OutIt *std::_Copy_unchecked<_Iter,esb::Sprite*>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=esb::Sprite *,
+              _Iter=esb::Sprite *,
+              _InIt=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1448): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::_Assign_range<_Iter>(_Iter,_Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1448): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::_Assign_range<_Iter>(_Iter,_Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1471): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::assign<esb::Sprite*,void>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1471): note: see reference to function template instantiation 'void std::vector<esb::Sprite,std::allocator<_Ty>>::assign<esb::Sprite*,void>(_Iter,_Iter)' being compiled
+          with
+          [
+              _Ty=esb::Sprite,
+              _Iter=esb::Sprite *
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1457): note: while compiling class template member function 'std::vector<esb::Sprite,std::allocator<_Ty>> &std::vector<_Ty,std::allocator<_Ty>>::operator =(const std::vector<_Ty,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=esb::Sprite
+          ]
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\sprite.cpp(128): note: see reference to function template instantiation 'std::vector<esb::Sprite,std::allocator<_Ty>> &std::vector<_Ty,std::allocator<_Ty>>::operator =(const std::vector<_Ty,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=esb::Sprite
+          ]
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(76): note: see reference to class template instantiation 'std::vector<esb::Sprite,std::allocator<_Ty>>' being compiled
+          with
+          [
+              _Ty=esb::Sprite
+          ]
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(63): note: 'esb::Sprite &esb::Sprite::operator =(const esb::Sprite &)': function was implicitly deleted because 'esb::Sprite' has a data member 'esb::Sprite::s' of reference type
+  c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\ebollartextengine.h(37): note: see declaration of 'esb::Sprite::s'
+  Generating Code...
