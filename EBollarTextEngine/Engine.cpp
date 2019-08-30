@@ -12,10 +12,6 @@ esb::Engine* esb::Engine::Instance() {
 	return instance;
 }
 
-void esb::Engine::LOADSCENE(Scene s) {
-	currScene = s;
-}
-
 void esb::Engine::SETREFRESHRATE(int milliseconds) {
 	rRate = milliseconds;
 }
@@ -159,7 +155,8 @@ void esb::Engine::PrintScene() {
 	prevFrame = currScene.getFrame(); // now do it all again bub
 }
 
-void esb::Engine::RENDER() {
+void esb::Engine::RENDER(Scene s) {
+	currScene = s;
 	currScene.Process();
 	PrintScene();
 	std::this_thread::sleep_for(std::chrono::milliseconds(rRate)); // adjustable delay

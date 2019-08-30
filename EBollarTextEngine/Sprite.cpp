@@ -112,20 +112,6 @@ void esb::Sprite::Translate(int xChange, int yChange) {
 			}
 		}
 	}
-	
-
-	for (int i = 0; i < s.size(); i++) {
-		if (s.at(i).getName() == name) {
-			if (s.at(i).getID() == id) {
-				s.at(i).setMap(map);
-				break;
-			}
-		}
-	}
-}
-
-void esb::Sprite::assignVec(std::vector<Sprite >& sprites) {
-	s = sprites;
 }
 
 void esb::Sprite::fillMap(esb::color c) {

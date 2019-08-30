@@ -10,7 +10,6 @@ Snake::Snake() {
 	head.x = 5; head.y = 5;
 	body.push_back(head);
 	SpawnApple();
-	e->LOADSCENE(s);
 	Run();
 }
 
@@ -27,7 +26,7 @@ void Snake::Run() {
 			s.Stop();
 		}
 
-		e->RENDER();
+		e->RENDER(s);
 	}
 }
 

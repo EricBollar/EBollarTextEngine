@@ -33,8 +33,9 @@ namespace esb {
 	};
 
 	class Sprite {
+	public:
+		Sprite() = default;
 	private:
-		std::vector<Sprite >& s; // the sprites
 		int index; // the index in the scene's sprites vec
 		int w, h;
 		std::string name = ""; // name of instance
@@ -117,10 +118,9 @@ namespace esb {
 
 		void PrintScene();
 	public:
-		void LOADSCENE(Scene s);
 		void SETREFRESHRATE(int milliseconds);
 		bool ONKEY(direction key);
 		DWORD GETCOLOR(color c);
-		void RENDER();
+		void RENDER(Scene s);
 	};
 }
