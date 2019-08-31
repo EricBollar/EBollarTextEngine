@@ -7,11 +7,46 @@
 
 namespace esb {
 
-	enum direction {
-		RIGHT,
-		LEFT,
-		UP,
-		DOWN,
+	enum keyCode {
+		RIGHTARROW,
+		LEFTARROW,
+		UPARROW,
+		DOWNARROW,
+		A,
+		B,
+		C,
+		D,
+		E,
+		F,
+		G,
+		H,
+		I,
+		J,
+		K,
+		L,
+		M,
+		N,
+		O,
+		P,
+		Q,
+		R,
+		S,
+		T,
+		U,
+		V,
+		W,
+		X,
+		Y,
+		Z,
+		RIGHTMOUSEBUTTON,
+		LEFTMOUSEBUTTON,
+		MIDDLEMOUSEBUTTON,
+		BACKSPACE,
+		TAB,
+		ENTER,
+		SHIFT,
+		ESCAPE,
+		SPACE
 	};
 
 	enum color {
@@ -83,7 +118,7 @@ namespace esb {
 		void SpriteCollate();
 	public:
 		void moveSprite(esb::Sprite* s, int xChange, int yChange);
-		Sprite FindSprite(std::string name, int id = -1);
+		Sprite* FindSprite(std::string name, int id = -1);
 		int getW();
 		int getH();
 		bool RUNNING = false;
@@ -91,12 +126,12 @@ namespace esb {
 		void Stop();
 		void ConstructScene(int width, int height);
 		void FillScene(color c);
-		void MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, int id = -1);
-		void MakeSpriteRect(int x, int y, int w, int h, color c, std::string name, int id = -1);
+		esb::Sprite* MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, int id = -1);
+		esb::Sprite* MakeSpriteRect(int x, int y, int w, int h, color c, std::string name, int id = -1);
 		void DelSprite(Sprite s);
 		void ClearSprites();
 		void SetBackground(esb::color c);
-		void MakeText(int x, int y, color c, std::string string, std::string name, int id = -1);
+		esb::Sprite* MakeText(int x, int y, color c, std::string string, std::string name, int id = -1);
 		Sprite CheckSpriteCollide(Sprite s);
 		std::vector<std::vector<Pixel> > getFrame();
 		std::vector<Pixel> getDiffs();
@@ -119,7 +154,7 @@ namespace esb {
 		void PrintScene();
 	public:
 		void SETREFRESHRATE(int milliseconds);
-		bool ONKEY(direction key);
+		bool ONKEY(keyCode key);
 		DWORD GETCOLOR(color c);
 		void RENDER(Scene s);
 	};

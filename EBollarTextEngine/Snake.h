@@ -1,22 +1,26 @@
 #include "EBollarTextEngine.h"
 #include <vector>
+#include <string>
 
 class Snake : public esb::Scene {
-	struct point {
-		int x, y;
-	};
-
+	
 private:
-	esb::Scene s;
-	esb::Engine* e = esb::Engine::Instance();
-	std::vector<point> body;
-	esb::direction movingDir = esb::RIGHT;
-	int wait = 0;
-	int w = 57; int h = 27;
+	esb::Engine *e = esb::Engine::Instance();
+	esb::Scene game;
+
+	int w;
+	int h;
+
+	esb::Sprite head;
+	int headX = w / 2;
+	int headY = h / 2;
+
+	std::string snakeDir = "R";
+
 public:
 	Snake();
+	void MoveSnake();
+	void HandleEvents();
 	void Run();
-	void GrowBody();
-	void Movement();
-	void SpawnApple();
+	void GetInputs();
 };
