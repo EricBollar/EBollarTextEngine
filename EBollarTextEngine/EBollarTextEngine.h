@@ -43,7 +43,6 @@ namespace esb {
 		std::vector<Pixel> map; // visual
 		int id; // internal random value or can be manually set by user if more than one of certain name
 	public:
-		void assignVec(std::vector<Sprite >& sprites);
 		void Translate(int xChange, int yChange);
 		void fillMap(color c);
 		void setMap(std::vector<Pixel> map);
@@ -83,6 +82,7 @@ namespace esb {
 		bool canPress = true;
 		void SpriteCollate();
 	public:
+		void moveSprite(esb::Sprite* s, int xChange, int yChange);
 		Sprite FindSprite(std::string name, int id = -1);
 		int getW();
 		int getH();

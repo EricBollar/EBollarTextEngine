@@ -11,33 +11,24 @@ int main()
 	s.ConstructScene(20, 15);
 	s.SetBackground(esb::LIGHTBLUE);
 
-	s.MakeSpriteRect(1, 1, 2, 2, esb::RED, "square");
+	s.MakeSpriteRect(8, 4, 1, 1, esb::RED, "square");
 	
 	esb::Sprite square = s.FindSprite("square");
 	e->SETREFRESHRATE(4);
 
 	while (s.RUNNING) {
 		if (e->ONKEY(esb::RIGHT)) {
-			square.Translate(1, 0);
-			s.DelSprite(s.FindSprite("square"));
-			s.AddSprite(square);
+			s.moveSprite(&square, 1, 0);
 		}
 		if (e->ONKEY(esb::LEFT)) {
-			square.Translate(-1, 0);
-			s.DelSprite(s.FindSprite("square"));
-			s.AddSprite(square);
+			s.moveSprite(&square, -1, 0);
 		}
 		if (e->ONKEY(esb::UP)) {
-			square.Translate(0, -1);
-			s.DelSprite(s.FindSprite("square"));
-			s.AddSprite(square);
+			s.moveSprite(&square, 0, -1);
 		}
 		if (e->ONKEY(esb::DOWN)) {
-			square.Translate(0, 1);
-			s.DelSprite(s.FindSprite("square"));
-			s.AddSprite(square);
+			s.moveSprite(&square, 0, 1);
 		}
-
 
 		e->RENDER(s);
 	}

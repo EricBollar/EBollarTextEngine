@@ -1,6 +1,7 @@
 #include "Snake.h"
 #include <iostream>
 
+/*
 Snake::Snake() {
 	s.ConstructScene(w, h);
 	s.MakeSpriteRect(5, 5, 1, 1, esb::GREEN, "head", 1);
@@ -42,7 +43,7 @@ void Snake::Movement() {
 			}
 			else {
 				// draw each point
-				s.FindSprite("body" + std::to_string(i)).Translate(body.at(i - 1).x - body.at(i).x, body.at(i - 1).y - body.at(i).y);
+				s.moveSprite(FindSprite("body" + std::to_string(i)), body.at(i - 1).x - body.at(i).x, body.at(i - 1).y - body.at(i).y);
 				body.at(i).x = body.at(i - 1).x;
 				body.at(i).y = body.at(i - 1).y;
 			}
@@ -50,16 +51,16 @@ void Snake::Movement() {
 	}
 
 	if (movingDir == esb::DOWN) {
-		s.FindSprite("head").Translate(0, 2);
+		s.moveSprite(FindSprite("head"), 0, 2);
 	}
 	if (movingDir == esb::UP) {
-		s.FindSprite("head").Translate(0, -2);
+		s.moveSprite(FindSprite("head"), 0, -2);
 	}
 	if (movingDir == esb::RIGHT) {
-		s.FindSprite("head").Translate(2, 0);
+		s.moveSprite(FindSprite("head"), 2, 0);
 	}
 	if (movingDir == esb::LEFT) {
-		s.FindSprite("head").Translate(-2, 0);
+		s.moveSprite(FindSprite("head"), 2, 0);
 	}
 	
 	if (e->ONKEY(esb::UP) && movingDir != esb::DOWN) {
@@ -89,4 +90,4 @@ void Snake::GrowBody() {
 
 void Snake::SpawnApple() {
 	s.MakeSpriteRect(rand() % w + 1, rand() % h + 1, 1, 1, esb::RED, "apple");
-}
+}*/

@@ -40,21 +40,18 @@ void esb::Sprite::Translate(int xChange, int yChange) {
 		bool restrictedRight = false;
 		bool restrictedLeft = false;
 
-		std::cout << map.size();
 		for (int i = 0; i < map.size(); i++) { // checks if any of sprite's pixels are directly next to resolution border (out of scene's 2d array index) and therefore restricting movement in that dir.
-			if (map.at(i).x - 1 < 0) {
+			if (map.at(i).x + x - 1 < 0) {
 				restrictedLeft = true;
 			}
-			if (map.at(i).x + 1 < 0) {
+			if (map.at(i).x + x + 1 >= w) {
 				restrictedRight = true;
 			}
 		}
 
 		if (xToGo > 0) { // left-right
 			if (!restrictedRight) {
-				for (int i = 0; i < map.size(); i++) {
-					map.at(i).x++;
-				}
+				x++;
 				xToGo--;
 			}
 			else {
@@ -62,9 +59,7 @@ void esb::Sprite::Translate(int xChange, int yChange) {
 			}
 		} else if (xToGo < 0) {
 			if (!restrictedLeft) {
-				for (int i = 0; i < map.size(); i++) {
-					map.at(i).x--;
-				}
+				x--;
 				xToGo++;
 			}
 			else {
@@ -81,19 +76,17 @@ void esb::Sprite::Translate(int xChange, int yChange) {
 		bool restrictedDown = false;
 
 		for (int i = 0; i < map.size(); i++) { // checks if any of sprite's pixels are directly next to resolution border (out of scene's 2d array index) and therefore restricting movement in that dir.
-			if (map.at(i).y - 1 < 0) {
+			if (map.at(i).y + y - 1 < 0) {
 				restrictedUp = true;
 			}
-			if (map.at(i).y + 1 < 0) {
+			if (map.at(i).y + y + 1 >= h) {
 				restrictedDown = true;
 			}
 		}
 
 		if (yToGo > 0) { // left-right
 			if (!restrictedDown) {
-				for (int i = 0; i < map.size(); i++) {
-					map.at(i).y++;
-				}
+				y++;
 				yToGo--;
 			}
 			else {
@@ -102,9 +95,7 @@ void esb::Sprite::Translate(int xChange, int yChange) {
 		}
 		else if (yToGo < 0) {
 			if (!restrictedUp) {
-				for (int i = 0; i < map.size(); i++) {
-					map.at(i).y--;
-				}
+				y--;
 				yToGo++;
 			}
 			else {
@@ -138,12 +129,10 @@ void esb::Sprite::setText(std::string t) {
 }
 
 void esb::Sprite::setX(int xPos) {
-	Translate(xPos - x, 0);
 	x = xPos;
 }
 
 void esb::Sprite::setY(int yPos) {
-	Translate(0, yPos - y);
 	y = yPos;
 }
 
