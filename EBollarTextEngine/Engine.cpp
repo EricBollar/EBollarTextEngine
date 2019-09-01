@@ -48,7 +48,7 @@ void ShowConsoleCursor(bool ysno)
 {
 	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	CONSOLE_CURSOR_INFO     cursorInfo;
+	CONSOLE_CURSOR_INFO cursorInfo;
 
 	GetConsoleCursorInfo(out, &cursorInfo);
 	cursorInfo.bVisible = ysno; // sets the cursor visibility
@@ -67,6 +67,14 @@ void setConsoleColour(WORD* Attributes, DWORD Color) // sets color of next print
 void ResetConsoleColour(WORD Attributes) // sets color to blank
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Attributes);
+}
+
+bool esb::Engine::RUNNING() {
+	return running;
+}
+
+void esb::Engine::STOP() {
+	running = false;
 }
 
 DWORD esb::Engine::GETCOLOR(esb::color c) { // makes things easier i think
@@ -108,10 +116,6 @@ void esb::Engine::PrintScene() {
 		std::cout << diffs.at(i).t << diffs.at(i).t; // woo hoo it prints a thing (print twice to adjust for vertical rectangular character borders so [][] instead of [] ) - makes it look more like a square
 
 		ResetConsoleColour(Attributes); // this is only useful once we've finished printing a frame so the things don't cross over to next frame
-	}
-
-	if (currScene.RUNNING == false) { // if game loop ends put cursor just below entire frame so it gets out the way or if u wanna print additional messages
-		setCursorPosition(0, currScene.getH());
 	}
 
 	std::cout.flush();

@@ -117,20 +117,16 @@ namespace esb {
 		bool canPress = true;
 		void SpriteCollate();
 	public:
-		void moveSprite(esb::Sprite* s, int xChange, int yChange);
 		Sprite* FindSprite(std::string name, int id = -1);
 		int getW();
 		int getH();
-		bool RUNNING = false;
 		void AddSprite(Sprite a);
-		void Stop();
-		void ConstructScene(int width, int height);
+		void ConstructScene(int width, int height, color backgroundColor);
 		void FillScene(color c);
 		esb::Sprite* MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, int id = -1);
 		esb::Sprite* MakeSpriteRect(int x, int y, int w, int h, color c, std::string name, int id = -1);
 		void DelSprite(Sprite s);
 		void ClearSprites();
-		void SetBackground(esb::color c);
 		esb::Sprite* MakeText(int x, int y, color c, std::string string, std::string name, int id = -1);
 		Sprite CheckSpriteCollide(Sprite s);
 		std::vector<std::vector<Pixel> > getFrame();
@@ -145,6 +141,7 @@ namespace esb {
 		Engine() {}; // all constructors set to private so that instantiation can only be made using Instance()
 		Engine(Engine const&) {}; // i gotta put curly brackets to disregard unresolved externals
 		Engine& operator=(Engine const&) {};
+		bool running = true;
 
 		Scene currScene;
 		int rRate;
@@ -153,6 +150,8 @@ namespace esb {
 
 		void PrintScene();
 	public:
+		bool RUNNING();
+		void STOP();
 		void SETREFRESHRATE(int milliseconds);
 		bool ONKEY(keyCode key);
 		DWORD GETCOLOR(color c);

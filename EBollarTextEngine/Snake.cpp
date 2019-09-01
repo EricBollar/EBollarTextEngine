@@ -1,19 +1,16 @@
 #include "Snake.h"
 #include <stdlib.h> // random
 
-/*
 Snake::Snake() {
-	game.ConstructScene(w, h);
-	e->SETREFRESHRATE(4);
+	game.ConstructScene(w, h, esb::BLACK);
+	e->SETREFRESHRATE(10);
 
-	game.MakeSpriteRect(headX, headY, 1, 1, esb::GREEN, "head");
-	head = game.FindSprite("head");
-
-
+	head = game.MakeSpriteRect(headX, headY, 1, 1, esb::GREEN, "head");
+	SpawnApple();
 }
 
 void Snake::Run() {
-	while (RUNNING) {
+	while (e->RUNNING()) {
 		MoveSnake();
 		HandleEvents();
 
@@ -22,17 +19,23 @@ void Snake::Run() {
 }
 
 void Snake::MoveSnake() {
+	apple->Translate(1, 0);
 	if (snakeDir == "R") {
-		
+		head->Translate(1, 0);
 	}
 	else if (snakeDir == "L") {
-
+		head->Translate(-1, 0);
 	}
-	else if (snakeDir == "R") {
-
+	else if (snakeDir == "U") {
+		head->Translate(0, -1);
 	}
-	else if (snakeDir == "L") {
+	else if (snakeDir == "D") {
+		head->Translate(0, 1);
+	}
 
+	for (int i = 1; i < snakeBody.size(); i++) {
+		snakeBody.at(i)->setX(snakeBody.at(i - 1)->getX());
+		snakeBody.at(i)->setY(snakeBody.at(i - 1)->getY());
 	}
 }
 
@@ -40,19 +43,26 @@ void Snake::HandleEvents() {
 	GetInputs();
 }
 
+void Snake::SpawnApple() {
+	int appleX = rand() % w;
+	int appleY = rand() % h;
+
+	apple = game.MakeSpriteRect(appleX, appleY, 1, 1, esb::RED, "apple");
+}
+
 void Snake::GetInputs() {
-	if (snakeDir == esb::UP || snakeDir == esb::DOWN) {
-		if (e->ONKEY(esb::LEFT)) {
-			snakeDir = esb::LEFT;
-		} else if (e->ONKEY(esb::RIGHT)) {
-			snakeDir = esb::RIGHT;
+	if (snakeDir == "U" || snakeDir == "D") {
+		if (e->ONKEY(esb::LEFTARROW)) {
+			snakeDir = "L";
+		} else if (e->ONKEY(esb::RIGHTARROW)) {
+			snakeDir = "R";
 		}
 	}
 	else {
-		if (e->ONKEY(esb::UP)) {
-			snakeDir = esb::UP;
-		} else if (e->ONKEY(esb::DOWN)) {
-			snakeDir = esb::DOWN;
+		if (e->ONKEY(esb::UPARROW)) {
+			snakeDir = "U";
+		} else if (e->ONKEY(esb::DOWNARROW)) {
+			snakeDir = "D";
 		}
 	}
-}*/
+}

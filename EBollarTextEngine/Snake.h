@@ -7,11 +7,17 @@ class Snake : public esb::Scene {
 private:
 	esb::Engine *e = esb::Engine::Instance();
 	esb::Scene game;
+	esb::Scene menu;
+	esb::Scene controls;
 
-	int w;
-	int h;
+	std::vector<esb::Sprite*> snakeBody;
 
-	esb::Sprite head;
+	esb::Sprite* head;
+	esb::Sprite* apple;
+
+	int w = 20;
+	int h = 20;
+
 	int headX = w / 2;
 	int headY = h / 2;
 
@@ -19,6 +25,7 @@ private:
 
 public:
 	Snake();
+	void SpawnApple();
 	void MoveSnake();
 	void HandleEvents();
 	void Run();
