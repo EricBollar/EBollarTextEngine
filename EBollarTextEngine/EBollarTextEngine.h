@@ -123,11 +123,11 @@ namespace esb {
 		void AddSprite(Sprite a);
 		void ConstructScene(int width, int height, color backgroundColor);
 		void FillScene(color c);
-		void MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, Sprite* ptr, int id = -1);
+		esb::Sprite* MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, int id = -1);
 		esb::Sprite* MakeSpriteRect(int x, int y, int w, int h, color c, std::string name, int id = -1);
 		void DelSprite(Sprite s);
 		void ClearSprites();
-		void MakeText(int x, int y, color c, std::string string, std::string name, Sprite* ptr, int id = -1);
+		esb::Sprite* MakeText(int x, int y, color c, std::string string, std::string name, int id = -1);
 		bool CheckSpriteCollide(esb::Sprite* sprite1, esb::Sprite* sprite2);
 		std::vector<std::vector<Pixel> > getFrame();
 		std::vector<Pixel> getDiffs();

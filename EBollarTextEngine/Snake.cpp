@@ -4,7 +4,13 @@
 Snake::Snake() {
 	game.ConstructScene(w, h, esb::BLACK);
 	death.ConstructScene(w, h, esb::RED);
+	menu.ConstructScene(w, h, esb::BLACK);
 	e->SETREFRESHRATE(5);
+
+	
+	cursor = menu.MakeSpriteRect(5, 12, 1, 2, esb::WHITE, "cursor");
+	returnToMenu = death.MakeText(w / 2 - 6, h / 2, esb::BLACK, "PRESS ENTER TO RETURN TO MENU", "deathText");
+	
 
 	head = game.MakeSpriteRect(headX, headY, 1, 1, esb::GREEN, "head");
 	head->setY(2);
@@ -17,10 +23,34 @@ Snake::Snake() {
 
 void Snake::Run() {
 	while (e->RUNNING()) {
-		MoveSnake();
-		HandleEvents();
+		if (e->ONKEY(esb::ESCAPE)) {
+			e->STOP();
+		}
+		if (currScene == &game) {
+			MoveSnake();
+			HandleEvents();
+		}
+		else if (currScene == &menu) {
+			MoveCursor();
+		}
+		else if (currScene == &death) {
+			if (e->ONKEY(esb::ENTER)) {
+				currScene = &menu;
+			}
+		}
 
 		e->RENDER(*currScene);
+	}
+}
+
+void Snake::MoveCursor() {
+	if (e->ONKEY(esb::DOWNARROW) && cursorPos == 0) {
+		cursor->Translate(0, 5);
+		cursorPos = 1;
+	} 
+	else if (e->ONKEY(esb::UPARROW) && cursorPos == 1) {
+		cursor->Translate(0, -5);
+		cursorPos = 0;
 	}
 }
 

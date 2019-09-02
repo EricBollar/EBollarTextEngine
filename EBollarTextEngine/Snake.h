@@ -17,9 +17,13 @@ private:
 
 	esb::Sprite* head;
 	esb::Sprite* apple;
+	esb::Sprite* cursor;
+	esb::Sprite* playGame;
+	esb::Sprite* returnToMenu;
 
 	int w = 20;
 	int h = 20;
+	int cursorPos = 0;
 
 	int headX = w / 2;
 	int headY = h / 2;
@@ -29,6 +33,7 @@ private:
 
 public:
 	Snake();
+	void MoveCursor();
 	void SpawnBody();
 	void SpawnApple();
 	void MoveSnake();
