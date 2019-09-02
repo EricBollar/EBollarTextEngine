@@ -1,17 +1,5 @@
-﻿  Engine.cpp
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(64): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
-  Scene.cpp
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(83): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(115): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(210): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(213): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(216): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Snake.cpp
-  Sprite.cpp
+﻿  Snake.cpp
+c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\snake.cpp(28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   main.cpp
   Generating Code...
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(32): warning C4715: 'esb::Scene::FindSprite': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\scene.cpp(200): warning C4715: 'esb::Scene::CheckSpriteCollide': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(99): warning C4715: 'esb::Engine::GETCOLOR': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(462): warning C4715: 'esb::Engine::ONKEY': not all control paths return a value
   EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe

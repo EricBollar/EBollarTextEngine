@@ -9,6 +9,9 @@ private:
 	esb::Scene game;
 	esb::Scene menu;
 	esb::Scene controls;
+	esb::Scene death;
+
+	esb::Scene* currScene = &game;
 
 	std::vector<esb::Sprite*> snakeBody;
 
@@ -22,6 +25,7 @@ private:
 	int headY = h / 2;
 
 	std::string snakeDir = "R";
+	std::string prevDir = "R";
 
 public:
 	Snake();

@@ -128,7 +128,7 @@ namespace esb {
 		void DelSprite(Sprite s);
 		void ClearSprites();
 		void MakeText(int x, int y, color c, std::string string, std::string name, Sprite* ptr, int id = -1);
-		std::string CheckSpriteCollide(Sprite s);
+		bool CheckSpriteCollide(esb::Sprite* sprite1, esb::Sprite* sprite2);
 		std::vector<std::vector<Pixel> > getFrame();
 		std::vector<Pixel> getDiffs();
 		void Process();

@@ -122,7 +122,7 @@ void esb::Engine::PrintScene() {
 	prevFrame = currScene.getFrame(); // now do it all again bub
 }
 
-void esb::Engine::RENDER(Scene s) {
+void esb::Engine::RENDER(esb::Scene s) {
 	currScene = s;
 	currScene.Process();
 	PrintScene();
