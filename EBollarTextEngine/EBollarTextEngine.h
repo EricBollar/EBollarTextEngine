@@ -108,7 +108,7 @@ namespace esb {
 		std::vector<Pixel> filler; // the row that prevFrame uses to iterate through frame
 		std::vector<std::vector<Pixel> > prevFrame; // array of pixels for prev frame
 
-		std::vector<Sprite > sprites; // the sprites
+		std::vector<Sprite* > sprites; // the sprites
 
 		std::vector<esb::Pixel> CompareFrames(std::vector<std::vector<esb::Pixel> >& frame1, std::vector<std::vector<esb::Pixel> >& frame2);
 		int rRate = 80;
@@ -123,12 +123,12 @@ namespace esb {
 		void AddSprite(Sprite a);
 		void ConstructScene(int width, int height, color backgroundColor);
 		void FillScene(color c);
-		esb::Sprite* MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, int id = -1);
+		void MakeSprite(int x, int y, std::vector<esb::Pixel> m, std::string name, Sprite* ptr, int id = -1);
 		esb::Sprite* MakeSpriteRect(int x, int y, int w, int h, color c, std::string name, int id = -1);
 		void DelSprite(Sprite s);
 		void ClearSprites();
-		esb::Sprite* MakeText(int x, int y, color c, std::string string, std::string name, int id = -1);
-		Sprite CheckSpriteCollide(Sprite s);
+		void MakeText(int x, int y, color c, std::string string, std::string name, Sprite* ptr, int id = -1);
+		std::string CheckSpriteCollide(Sprite s);
 		std::vector<std::vector<Pixel> > getFrame();
 		std::vector<Pixel> getDiffs();
 		void Process();

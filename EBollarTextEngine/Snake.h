@@ -25,6 +25,7 @@ private:
 
 public:
 	Snake();
+	void SpawnBody();
 	void SpawnApple();
 	void MoveSnake();
 	void HandleEvents();
