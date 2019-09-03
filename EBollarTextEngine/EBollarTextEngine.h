@@ -64,7 +64,7 @@ namespace esb {
 		int x, y; // mainly just used for spritemaps, when added to frame this is left blank
 		color c; // color
 		color textColor; // color of text
-		char t = ' '; // text displayed (automatically a space because it cannot be blank to print an empty pix)
+		char t = NULL; // text displayed (automatically a space because it cannot be blank to print an empty pix)
 	};
 
 	class Sprite {
@@ -120,6 +120,7 @@ namespace esb {
 		Sprite* FindSprite(std::string name, int id = -1);
 		int getW();
 		int getH();
+		esb::color getBackgroundColor();
 		void AddSprite(Sprite a);
 		void ConstructScene(int width, int height, color backgroundColor);
 		void FillScene(color c);

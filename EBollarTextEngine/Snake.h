@@ -42,4 +42,8 @@ public:
 	void HandleEvents();
 	void Run();
 	void GetInputs();
+
+	void SetupGame();
+	void SetupMenu();
+	void SetupControls();
 };

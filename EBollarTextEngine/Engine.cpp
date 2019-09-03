@@ -113,11 +113,24 @@ void esb::Engine::PrintScene() {
 		setCursorPosition(diffs.at(i).x * 2, diffs.at(i).y);
 
 		setConsoleColour(&Attributes, BACKGROUND_INTENSITY | GETCOLOR((diffs.at(i).c))); // this just sets the color of the current pixel that it's printing to the console's color scheme
-		if (diffs.at(i).t == ' ') {
-			std::cout << diffs.at(i).t << diffs.at(i).t; // woo hoo it prints a thing (print twice to adjust for vertical rectangular character borders so [][] instead of [] ) - makes it look more like a square
+		if (diffs.at(i).t == NULL) {
+			std::cout << "  "; // woo hoo it prints a thing (print twice to adjust for vertical rectangular character borders so [][] instead of [] ) - makes it look more like a square
 		}
 		else {
+			int coverup = 1;
 			std::cout << diffs.at(i).t;
+			while (diffs.at(i + 1).t != NULL) {
+				i++;
+				std::cout << diffs.at(i).t;
+				coverup++;
+			}
+			int adder = 1;
+			while (coverup > 0 && adder + diffs.at(i).x <= currScene.getW() * 2) {
+				setConsoleColour(&Attributes, BACKGROUND_INTENSITY | GETCOLOR(currScene.getBackgroundColor()));
+				std::cout << " ";
+				coverup--;
+				adder++;
+			}
 		}
 
 		ResetConsoleColour(Attributes); // this is only useful once we've finished printing a frame so the things don't cross over to next frame

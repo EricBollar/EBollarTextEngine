@@ -10,7 +10,7 @@ Snake::Snake() {
 
 	
 	cursor = menu.MakeSpriteRect(5, 12, 1, 1, esb::WHITE, "cursor");
-	returnToMenu = death.MakeText(2, 2, esb::BLACK, "PRESS ENTER", "deathText");
+	returnToMenu = death.MakeText(w/2 - 3, h/2, esb::BLACK, "PRESS ENTER", "deathText");
 	playGame = menu.MakeText(7, 12, esb::WHITE, "PLAY GAME", "playGame");
 	tutorial = menu.MakeText(7, 15, esb::WHITE, "HOW TO PLAY", "tutorial");
 	
@@ -35,6 +35,12 @@ void Snake::Run() {
 		}
 		else if (currScene == &menu) {
 			MoveCursor();
+			if (cursorPos == 0 && e->ONKEY(esb::RIGHTARROW)) {
+				currScene = &game;
+			}
+			else if (cursorPos == 1 && e->ONKEY(esb::RIGHTARROW)) {
+				currScene = &controls;
+			};
 		}
 		else if (currScene == &death) {
 			if (e->ONKEY(esb::ENTER)) {
@@ -46,13 +52,17 @@ void Snake::Run() {
 	}
 }
 
+void Snake::SetupGame() {
+
+}
+
 void Snake::MoveCursor() {
 	if (e->ONKEY(esb::DOWNARROW) && cursorPos == 0) {
-		cursor->Translate(0, 5);
+		cursor->Translate(0, 3);
 		cursorPos = 1;
 	} 
 	else if (e->ONKEY(esb::UPARROW) && cursorPos == 1) {
-		cursor->Translate(0, -5);
+		cursor->Translate(0, -3);
 		cursorPos = 0;
 	}
 }
