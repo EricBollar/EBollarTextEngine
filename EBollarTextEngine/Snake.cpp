@@ -2,14 +2,17 @@
 #include <stdlib.h> // random
 
 Snake::Snake() {
+	wait = false;
 	game.ConstructScene(w, h, esb::BLACK);
 	death.ConstructScene(w, h, esb::RED);
 	menu.ConstructScene(w, h, esb::BLACK);
 	e->SETREFRESHRATE(5);
 
 	
-	cursor = menu.MakeSpriteRect(5, 12, 1, 2, esb::WHITE, "cursor");
-	returnToMenu = death.MakeText(w / 2 - 6, h / 2, esb::BLACK, "PRESS ENTER TO RETURN TO MENU", "deathText");
+	cursor = menu.MakeSpriteRect(5, 12, 1, 1, esb::WHITE, "cursor");
+	returnToMenu = death.MakeText(2, 2, esb::BLACK, "PRESS ENTER", "deathText");
+	playGame = menu.MakeText(7, 12, esb::WHITE, "PLAY GAME", "playGame");
+	tutorial = menu.MakeText(7, 15, esb::WHITE, "HOW TO PLAY", "tutorial");
 	
 
 	head = game.MakeSpriteRect(headX, headY, 1, 1, esb::GREEN, "head");
@@ -56,10 +59,20 @@ void Snake::MoveCursor() {
 
 void Snake::MoveSnake() {
 	for (int i = snakeBody.size() - 1; i > 0; i--) {
-		snakeBody.at(i)->setX(snakeBody.at(i - 1)->getX());
-		snakeBody.at(i)->setY(snakeBody.at(i - 1)->getY());
+		if (!wait && i == snakeBody.size() - 1) {
+			snakeBody.at(i)->setX(snakeBody.at(i - 1)->getX());
+			snakeBody.at(i)->setY(snakeBody.at(i - 1)->getY());
+		}
+		else if (wait == true && i == snakeBody.size() - 1) {
+			wait = false;
+		}
+		else {
+			snakeBody.at(i)->setX(snakeBody.at(i - 1)->getX());
+			snakeBody.at(i)->setY(snakeBody.at(i - 1)->getY());
+		}
 	}
 
+	prevDir = snakeDir;
 	if (snakeDir == "R") {
 		head->Translate(1, 0);
 	}
@@ -84,6 +97,7 @@ void Snake::HandleEvents() {
 	for (int i = 1; i < snakeBody.size() - 1; i++) {
 		if (game.CheckSpriteCollide(head, snakeBody.at(i))) {
 			currScene = &death;
+			break;
 		}
 	}
 }
@@ -120,20 +134,7 @@ void Snake::SpawnBody() {
 	int bodyX = snakeBody.at(snakeBody.size() - 1)->getX() + 1;
 	int bodyY = snakeBody.at(snakeBody.size() - 1)->getY() + 1;
 
-	
-	if (snakeDir == "R") {
-		bodyX--;
-	} 
-	else if (snakeDir == "L") {
-		bodyX++;
-	} 
-	else if (snakeDir == "U") {
-		bodyY++;
-	}
-	else {
-		bodyY--;
-	}
-
 	esb::Sprite* body = game.MakeSpriteRect(bodyX, bodyY, 1, 1, esb::GREEN, "body");
 	snakeBody.push_back(body);
+	wait = true;
 }

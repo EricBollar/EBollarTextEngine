@@ -19,6 +19,7 @@ private:
 	esb::Sprite* apple;
 	esb::Sprite* cursor;
 	esb::Sprite* playGame;
+	esb::Sprite* tutorial;
 	esb::Sprite* returnToMenu;
 
 	int w = 20;
@@ -27,6 +28,7 @@ private:
 
 	int headX = w / 2;
 	int headY = h / 2;
+	bool wait;
 
 	std::string snakeDir = "R";
 	std::string prevDir = "R";
