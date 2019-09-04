@@ -144,7 +144,7 @@ namespace esb {
 		Engine& operator=(Engine const&) {};
 		bool running = true;
 
-		Scene currScene;
+		Scene* currScene;
 		int rRate;
 		WORD Attributes = 0;
 		std::vector<std::vector<Pixel> > prevFrame; // array of pixels for prev frame
@@ -156,6 +156,6 @@ namespace esb {
 		void SETREFRESHRATE(int milliseconds);
 		bool ONKEY(keyCode key);
 		DWORD GETCOLOR(color c);
-		void RENDER(Scene s);
+		void RENDER(Scene* s);
 	};
 }

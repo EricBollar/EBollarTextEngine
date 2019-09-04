@@ -100,8 +100,8 @@ DWORD esb::Engine::GETCOLOR(esb::color c) { // makes things easier i think
 
 void esb::Engine::PrintScene() {
 	ShowConsoleCursor(false);
-	std::vector<std::vector<Pixel> > currFrame = currScene.getFrame();
-	std::vector<Pixel> diffs = currScene.getDiffs();
+	std::vector<std::vector<Pixel> > currFrame = currScene->getFrame();
+	std::vector<Pixel> diffs = currScene->getDiffs();
 
 	// FillScene(baseColor); // easy background and reset (although not most efficient this is windows console so i don't think its a huge problem...)
 	// SpriteCollate(); // put them on de top uh de ting
@@ -125,8 +125,8 @@ void esb::Engine::PrintScene() {
 				coverup++;
 			}
 			int adder = 1;
-			while (coverup > 0 && adder + diffs.at(i).x <= currScene.getW() * 2) {
-				setConsoleColour(&Attributes, BACKGROUND_INTENSITY | GETCOLOR(currScene.getBackgroundColor()));
+			while (coverup > 0 && adder + diffs.at(i).x <= currScene->getW() * 2) {
+				setConsoleColour(&Attributes, BACKGROUND_INTENSITY | GETCOLOR(currScene->getBackgroundColor()));
 				std::cout << " ";
 				coverup--;
 				adder++;
@@ -137,12 +137,12 @@ void esb::Engine::PrintScene() {
 	}
 
 	std::cout.flush();
-	prevFrame = currScene.getFrame(); // now do it all again bub
+	prevFrame = currScene->getFrame(); // now do it all again bub
 }
 
-void esb::Engine::RENDER(esb::Scene s) {
+void esb::Engine::RENDER(esb::Scene* s) {
 	currScene = s;
-	currScene.Process();
+	currScene->Process();
 	PrintScene();
 	std::this_thread::sleep_for(std::chrono::milliseconds(rRate)); // adjustable delay
 }

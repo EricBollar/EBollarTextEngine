@@ -6,7 +6,7 @@ Snake::Snake() {
 	game.ConstructScene(w, h, esb::BLACK);
 	death.ConstructScene(w, h, esb::RED);
 	menu.ConstructScene(w, h, esb::BLACK);
-	e->SETREFRESHRATE(5);
+	e->SETREFRESHRATE(85);
 
 	
 	cursor = menu.MakeSpriteRect(5, 12, 1, 1, esb::WHITE, "cursor");
@@ -48,7 +48,7 @@ void Snake::Run() {
 			}
 		}
 
-		e->RENDER(*currScene);
+		e->RENDER(currScene);
 	}
 }
 

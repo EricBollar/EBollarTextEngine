@@ -1,9 +1,3 @@
-﻿  Engine.cpp
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(64): warning C4244: 'argument': conversion from 'DWORD' to 'WORD', possible loss of data
-  Snake.cpp
+﻿  Snake.cpp
 c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\snake.cpp(71): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  main.cpp
-  Generating Code...
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(99): warning C4715: 'esb::Engine::GETCOLOR': not all control paths return a value
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\engine.cpp(480): warning C4715: 'esb::Engine::ONKEY': not all control paths return a value
   EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe

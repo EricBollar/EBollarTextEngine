@@ -7,6 +7,7 @@
 void Demo() {
 	esb::Engine* e = esb::Engine::Instance();
 	esb::Scene s;
+	esb::Scene* currScene = &s;
 
 	s.ConstructScene(20, 15, esb::LIGHTBLUE);
 
@@ -36,7 +37,7 @@ void Demo() {
 			e->STOP();
 		}
 
-		e->RENDER(s);
+		e->RENDER(currScene);
 	}
 }
 
