@@ -36,6 +36,11 @@ void cls() {
 	SetConsoleCursorPosition(hOut, topLeft);
 }
 
+void esb::Engine::LOAD(esb::Scene* s) {
+	currScene = s;
+	currScene->clearDiffs();
+}
+
 void setCursorPosition(int x, int y) // puts cursor at point on screen - allows for double buffering
 {
 	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -113,24 +118,12 @@ void esb::Engine::PrintScene() {
 		setCursorPosition(diffs.at(i).x * 2, diffs.at(i).y);
 
 		setConsoleColour(&Attributes, BACKGROUND_INTENSITY | GETCOLOR((diffs.at(i).c))); // this just sets the color of the current pixel that it's printing to the console's color scheme
-		if (diffs.at(i).t == NULL) {
+		if (diffs.at(i).t == "") {
 			std::cout << "  "; // woo hoo it prints a thing (print twice to adjust for vertical rectangular character borders so [][] instead of [] ) - makes it look more like a square
 		}
 		else {
-			int coverup = 1;
 			std::cout << diffs.at(i).t;
-			while (diffs.at(i + 1).t != NULL) {
-				i++;
-				std::cout << diffs.at(i).t;
-				coverup++;
-			}
-			int adder = 1;
-			while (coverup > 0 && adder + diffs.at(i).x <= currScene->getW() * 2) {
-				setConsoleColour(&Attributes, BACKGROUND_INTENSITY | GETCOLOR(currScene->getBackgroundColor()));
-				std::cout << " ";
-				coverup--;
-				adder++;
-			}
+			i += diffs.at(i).t.size()/2 - 1;
 		}
 
 		ResetConsoleColour(Attributes); // this is only useful once we've finished printing a frame so the things don't cross over to next frame
@@ -140,11 +133,20 @@ void esb::Engine::PrintScene() {
 	prevFrame = currScene->getFrame(); // now do it all again bub
 }
 
-void esb::Engine::RENDER(esb::Scene* s) {
-	currScene = s;
+void esb::Engine::RENDER() {
 	currScene->Process();
 	PrintScene();
 	std::this_thread::sleep_for(std::chrono::milliseconds(rRate)); // adjustable delay
+}
+
+/*
+void esb::Engine::PAUSE(int millisecs) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(millisecs));
+}
+*/
+
+esb::Scene* esb::Engine::GETSCENE() {
+	return currScene;
 }
 
 // Switch statement for all KeyCodes below

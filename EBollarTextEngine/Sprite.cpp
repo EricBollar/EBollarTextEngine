@@ -120,12 +120,7 @@ std::vector<esb::Pixel> &esb::Sprite::getMap() {
 }
 
 void esb::Sprite::setText(std::string t) {
-	for (int i = 0; i < map.size(); i++) {
-		if (i == t.size() || t == "") {
-			break;
-		}
-		map[i].t = t[i];
-	}
+	map[0].t = t;
 }
 
 void esb::Sprite::setX(int xPos) {

@@ -2,26 +2,9 @@
 #include <stdlib.h> // random
 
 Snake::Snake() {
-	wait = false;
-	game.ConstructScene(w, h, esb::BLACK);
-	death.ConstructScene(w, h, esb::RED);
-	menu.ConstructScene(w, h, esb::BLACK);
 	e->SETREFRESHRATE(85);
-
-	
-	cursor = menu.MakeSpriteRect(5, 12, 1, 1, esb::WHITE, "cursor");
-	returnToMenu = death.MakeText(w/2 - 3, h/2, esb::BLACK, "PRESS ENTER", "deathText");
-	playGame = menu.MakeText(7, 12, esb::WHITE, "PLAY GAME", "playGame");
-	tutorial = menu.MakeText(7, 15, esb::WHITE, "HOW TO PLAY", "tutorial");
-	
-
-	head = game.MakeSpriteRect(headX, headY, 1, 1, esb::GREEN, "head");
-	head->setY(2);
-	snakeBody.push_back(head);
-	SpawnApple();
-
-	esb::Sprite* startingBody = game.MakeSpriteRect(headX - 1, headY, 1, 1, esb::GREEN, "body");
-	snakeBody.push_back(startingBody);
+	SetupGame();
+	Run();
 }
 
 void Snake::Run() {
@@ -29,42 +12,59 @@ void Snake::Run() {
 		if (e->ONKEY(esb::ESCAPE)) {
 			e->STOP();
 		}
-		if (currScene == &game) {
+		if (e->GETSCENE() == &gameS) {
 			MoveSnake();
 			HandleEvents();
 		}
-		else if (currScene == &menu) {
-			MoveCursor();
-			if (cursorPos == 0 && e->ONKEY(esb::RIGHTARROW)) {
-				currScene = &game;
+		else if (e->GETSCENE() == &menuS) {
+			if (e->ONKEY(esb::SPACE)) {
+				e->LOAD(&gameS);
 			}
-			else if (cursorPos == 1 && e->ONKEY(esb::RIGHTARROW)) {
-				currScene = &controls;
-			};
 		}
-		else if (currScene == &death) {
-			if (e->ONKEY(esb::ENTER)) {
-				currScene = &menu;
-			}
+		else if (e->GETSCENE() == &deathS && e->ONKEY(esb::ENTER)) {
+			SetupGame();
+			e->LOAD(&menuS);
 		}
 
-		e->RENDER(currScene);
+		e->RENDER();
 	}
 }
 
 void Snake::SetupGame() {
+	resetVars();
+	gameS.ConstructScene(w, h, esb::BLACK);
+	deathS.ConstructScene(w, h, esb::RED);
+	menuS.ConstructScene(w, h, esb::BLACK);
 
+	e->LOAD(&menuS);
+
+	createSprites();
+	SpawnApple();
 }
 
-void Snake::MoveCursor() {
-	if (e->ONKEY(esb::DOWNARROW) && cursorPos == 0) {
-		cursor->Translate(0, 3);
-		cursorPos = 1;
-	} 
-	else if (e->ONKEY(esb::UPARROW) && cursorPos == 1) {
-		cursor->Translate(0, -3);
-		cursorPos = 0;
-	}
+void Snake::resetVars() {
+	snakeBody.clear();
+	cursorPos = 0;
+
+	headX = w / 2;
+	headY = h / 2;
+	wait = false;
+
+	snakeDir = "R";
+	prevDir = "R";
+}
+
+void Snake::createSprites() {
+	returnToMenuText = deathS.MakeText(6, h / 2, esb::BLACK, "PRESS ENTER FOR MENU", "deathText");
+	playGameText = menuS.MakeText(6, 12, esb::WHITE, "PRESS SPACE TO PLAY", "playGame");
+	title = menuS.MakeText(w/2 - 3, 6, esb::GREEN, "WELCOME...", "w");
+	titleT = menuS.MakeText(w/2 + 1, 7, esb::GREEN, "TO SNAKE", "s");
+
+	head = gameS.MakeSpriteRect(headX, headY, 1, 1, esb::GREEN, "head");
+	snakeBody.push_back(head);
+
+	esb::Sprite* startingBody = gameS.MakeSpriteRect(headX - 1, headY, 1, 1, esb::GREEN, "body");
+	snakeBody.push_back(startingBody);
 }
 
 void Snake::MoveSnake() {
@@ -99,14 +99,14 @@ void Snake::MoveSnake() {
 
 void Snake::HandleEvents() {
 	GetInputs();
-	if (game.CheckSpriteCollide(head, apple)) {
+	if (gameS.CheckSpriteCollide(head, apple)) {
 		SpawnBody();
-		game.DelSprite(*apple);
+		gameS.DelSprite(*apple);
 		SpawnApple();
 	}
 	for (int i = 1; i < snakeBody.size() - 1; i++) {
-		if (game.CheckSpriteCollide(head, snakeBody.at(i))) {
-			currScene = &death;
+		if (gameS.CheckSpriteCollide(head, snakeBody.at(i))) {
+			e->LOAD(&deathS);
 			break;
 		}
 	}
@@ -116,7 +116,7 @@ void Snake::SpawnApple() {
 	int appleX = rand() % w + 1;
 	int appleY = rand() % h + 1;
 
-	apple = game.MakeSpriteRect(appleX, appleY, 1, 1, esb::RED, "apple");
+	apple = gameS.MakeSpriteRect(appleX, appleY, 1, 1, esb::RED, "apple");
 }
 
 void Snake::GetInputs() {
@@ -144,7 +144,7 @@ void Snake::SpawnBody() {
 	int bodyX = snakeBody.at(snakeBody.size() - 1)->getX() + 1;
 	int bodyY = snakeBody.at(snakeBody.size() - 1)->getY() + 1;
 
-	esb::Sprite* body = game.MakeSpriteRect(bodyX, bodyY, 1, 1, esb::GREEN, "body");
+	esb::Sprite* body = gameS.MakeSpriteRect(bodyX, bodyY, 1, 1, esb::GREEN, "body");
 	snakeBody.push_back(body);
 	wait = true;
 }

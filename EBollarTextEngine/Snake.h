@@ -6,21 +6,18 @@ class Snake : public esb::Scene {
 	
 private:
 	esb::Engine *e = esb::Engine::Instance();
-	esb::Scene game;
-	esb::Scene menu;
-	esb::Scene controls;
-	esb::Scene death;
-
-	esb::Scene* currScene = &game;
+	esb::Scene gameS;
+	esb::Scene menuS;
+	esb::Scene deathS;
 
 	std::vector<esb::Sprite*> snakeBody;
 
 	esb::Sprite* head;
 	esb::Sprite* apple;
-	esb::Sprite* cursor;
-	esb::Sprite* playGame;
-	esb::Sprite* tutorial;
-	esb::Sprite* returnToMenu;
+	esb::Sprite* playGameText;
+	esb::Sprite* returnToMenuText;
+	esb::Sprite* title;
+	esb::Sprite* titleT;
 
 	int w = 20;
 	int h = 20;
@@ -28,14 +25,13 @@ private:
 
 	int headX = w / 2;
 	int headY = h / 2;
-	bool wait;
+	bool wait = false;
 
 	std::string snakeDir = "R";
 	std::string prevDir = "R";
 
 public:
 	Snake();
-	void MoveCursor();
 	void SpawnBody();
 	void SpawnApple();
 	void MoveSnake();
@@ -44,6 +40,6 @@ public:
 	void GetInputs();
 
 	void SetupGame();
-	void SetupMenu();
-	void SetupControls();
+	void resetVars();
+	void createSprites();
 };

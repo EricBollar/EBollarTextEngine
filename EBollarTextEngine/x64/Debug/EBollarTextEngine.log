@@ -1,3 +1,2 @@
-﻿  Snake.cpp
-c:\users\eric bollar\documents\visual studio 2017\projects\ebollartextengine\ebollartextengine\snake.cpp(71): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  main.cpp
   EBollarTextEngine.vcxproj -> C:\Users\Eric Bollar\documents\visual studio 2017\Projects\EBollarTextEngine\x64\Debug\EBollarTextEngine.exe
