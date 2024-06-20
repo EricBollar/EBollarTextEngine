@@ -1,3 +1,2 @@
-# EBollarTextEngine
-Windows Console 2D Game Engine
-http://www.ericbollar.com/consoleengine.html
+# DEMO VIDEO (Click to play)
+[![Watch the video](https://img.youtube.com/vi/10kIV3dlz3w/maxresdefault.jpg)](https://youtu.be/10kIV3dlz3w)
